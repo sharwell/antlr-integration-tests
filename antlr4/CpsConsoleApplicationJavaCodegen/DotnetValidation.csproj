@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net20;net30;net35;net40;net45;netcoreapp1.1;netcoreapp2.0</TargetFrameworks>
+    <Antlr4UseCSharpGenerator>False</Antlr4UseCSharpGenerator>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Antlr4" Version="4.6.5-beta001" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Antlr4 Include="Grammar.g4">
+      <Generator>MSBuild:Compile</Generator>
+      <CustomToolNamespace>DotnetValidation</CustomToolNamespace>
+    </Antlr4>
+    <Antlr4 Include="SubFolder\SubGrammar.g4">
+      <Generator>MSBuild:Compile</Generator>
+      <CustomToolNamespace>DotnetValidation.SubFolder</CustomToolNamespace>
+    </Antlr4>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="@(Antlr4)" />
+  </ItemGroup>
+
+</Project>

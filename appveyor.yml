@@ -8,3 +8,11 @@ build_script:
 - msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
 - msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
 - cd ..\..
+- cd antlr4\CpsConsoleApplication
+- msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
+- msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+- cd ..\..
+- cd antlr4\CpsConsoleApplicationJavaCodegen
+- msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
+- msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+- cd ..\..
