@@ -12,6 +12,7 @@ script:
 #  - dotnet build -f netcoreapp2.0 DotnetValidation.sln
 #  - cd ../..
   - cd antlr4/CpsConsoleApplicationJavaCodegen
+  - unset _JAVA_OPTIONS
   - dotnet build -f netcoreapp1.1 DotnetValidation.sln
   - dotnet build -f netcoreapp2.0 DotnetValidation.sln
   - cd ../..
