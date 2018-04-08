@@ -1,0 +1,10 @@
+version: 1.0.{build}
+os: Visual Studio 2017
+configuration: Release
+init:
+- git config --global core.autocrlf true
+build_script:
+- cd antlr3\CpsConsoleApplication
+- msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
+- msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+- cd ..\..
