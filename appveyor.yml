@@ -8,6 +8,10 @@ build_script:
 - msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
 - msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
 - cd ..\..
+- md nuget-dev
+- ps: Start-FileDownload 'https://ci.appveyor.com/api/buildjobs/j3pf22ge5qajk069/artifacts/build%2Fnuget%2FAntlr4.4.6.5-dev.nupkg' -FileName 'nuget-dev\Antlr4.4.6.5-dev.nupkg'
+- ps: Start-FileDownload 'https://ci.appveyor.com/api/buildjobs/j3pf22ge5qajk069/artifacts/build%2Fnuget%2FAntlr4.CodeGenerator.4.6.5-dev.nupkg' -FileName 'nuget-dev\Antlr4.CodeGenerator.4.6.5-dev.nupkg'
+- ps: Start-FileDownload 'https://ci.appveyor.com/api/buildjobs/j3pf22ge5qajk069/artifacts/build%2Fnuget%2FAntlr4.Runtime.4.6.5-dev.nupkg' -FileName 'nuget-dev\Antlr4.Runtime.4.6.5-dev.nupkg'
 - cd antlr4\CpsConsoleApplication
 - msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
 - msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln

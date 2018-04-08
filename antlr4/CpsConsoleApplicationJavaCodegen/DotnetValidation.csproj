@@ -7,22 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Antlr4" Version="4.6.5-beta001" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Antlr4 Include="Grammar.g4">
-      <Generator>MSBuild:Compile</Generator>
-      <CustomToolNamespace>DotnetValidation</CustomToolNamespace>
-    </Antlr4>
-    <Antlr4 Include="SubFolder\SubGrammar.g4">
-      <Generator>MSBuild:Compile</Generator>
-      <CustomToolNamespace>DotnetValidation.SubFolder</CustomToolNamespace>
-    </Antlr4>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="@(Antlr4)" />
+    <PackageReference Include="Antlr4" Version="4.6.5-dev" />
   </ItemGroup>
 
 </Project>
