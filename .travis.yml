@@ -7,8 +7,14 @@ script:
   - dotnet build -f netcoreapp1.1 DotnetValidation.sln
   - dotnet build -f netcoreapp2.0 DotnetValidation.sln
   - cd ../..
+  - cd antlr3/CpsSingleTargetFramework
+  - dotnet build -f netcoreapp2.0 DotnetValidation.sln
+  - cd ../..
   - cd antlr4/CpsConsoleApplication
   - dotnet build -f netcoreapp1.1 DotnetValidation.sln
+  - dotnet build -f netcoreapp2.0 DotnetValidation.sln
+  - cd ../..
+  - cd antlr4/CpsSingleTargetFramework
   - dotnet build -f netcoreapp2.0 DotnetValidation.sln
   - cd ../..
   - cd antlr4/CpsConsoleApplicationJavaCodegen
