@@ -4,6 +4,18 @@ configuration: Release
 init:
 - git config --global core.autocrlf true
 build_script:
+- cd antlr3\CsprojConsoleApplication
+- nuget restore DotnetValidation.sln
+- msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+- cd ..\..
+- cd antlr4\CsprojConsoleApplication
+- nuget restore DotnetValidation.sln
+- msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+- cd ..\..
+- cd antlr4\CsprojConsoleApplicationJavaCodegen
+- nuget restore DotnetValidation.sln
+- msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+- cd ..\..
 - cd antlr3\CpsConsoleApplication
 - msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
 - msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
