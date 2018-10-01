@@ -1,5 +1,8 @@
 version: 1.0.{build}
-os: Visual Studio 2017
+os:
+- Visual Studio 2013
+- Visual Studio 2015
+- Visual Studio 2017
 configuration: Release
 init:
 - git config --global core.autocrlf true
@@ -16,23 +19,41 @@ build_script:
 - nuget restore DotnetValidation.sln
 - msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
 - cd ..\..
-- cd antlr3\CpsConsoleApplication
-- msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
-- msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
-- cd ..\..
-- cd antlr3\CpsSingleTargetFramework
-- msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
-- msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
-- cd ..\..
-- cd antlr4\CpsConsoleApplication
-- msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
-- msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
-- cd ..\..
-- cd antlr4\CpsSingleTargetFramework
-- msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
-- msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
-- cd ..\..
-- cd antlr4\CpsConsoleApplicationJavaCodegen
-- msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
-- msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
-- cd ..\..
+for:
+-
+  matrix:
+    only:
+      - image: Visual Studio 2017
+  build_script:
+  - cd antlr3\CsprojConsoleApplication
+  - nuget restore DotnetValidation.sln
+  - msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+  - cd ..\..
+  - cd antlr4\CsprojConsoleApplication
+  - nuget restore DotnetValidation.sln
+  - msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+  - cd ..\..
+  - cd antlr4\CsprojConsoleApplicationJavaCodegen
+  - nuget restore DotnetValidation.sln
+  - msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+  - cd ..\..
+  - cd antlr3\CpsConsoleApplication
+  - msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
+  - msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+  - cd ..\..
+  - cd antlr3\CpsSingleTargetFramework
+  - msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
+  - msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+  - cd ..\..
+  - cd antlr4\CpsConsoleApplication
+  - msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
+  - msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+  - cd ..\..
+  - cd antlr4\CpsSingleTargetFramework
+  - msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
+  - msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+  - cd ..\..
+  - cd antlr4\CpsConsoleApplicationJavaCodegen
+  - msbuild /nologo /m /t:Restore /verbosity:minimal DotnetValidation.sln
+  - msbuild /nologo /m /nr:false /t:Rebuild "/logger:%ProgramFiles%\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /verbosity:minimal /p:Configuration=%CONFIGURATION% DotnetValidation.sln
+  - cd ..\..
